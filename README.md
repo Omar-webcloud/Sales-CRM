@@ -1,5 +1,5 @@
 
-# 📊 Sales Dashboard CRM — UI Wireframe
+# 📊 Sales Dashboard CRM — UIUX Wireframe
 
 This document defines the full UI structure for a **Sales Dashboard CRM (analytics-heavy SaaS)** built with a modern frontend stack (Next.js + TypeScript + Tailwind).
 
