@@ -28,12 +28,14 @@ export default function Sidebar() {
             <Link
               key={item.href}
               href={item.href}
-              className="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-900"
+              className="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-900 dark:hover:text-zinc-50"
             >
-              <span className="text-zinc-500 group-hover:text-zinc-900 dark:group-hover:text-zinc-50">
+              <span className="text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-zinc-50">
                 <Icon className="h-4 w-4" />
               </span>
-              {item.label}
+              <span className="transition-colors group-hover:text-zinc-900 dark:group-hover:text-zinc-50">
+                {item.label}
+              </span>
             </Link>
           );
         })}
