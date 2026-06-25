@@ -9,9 +9,9 @@ import {
   TableRow,
 } from "@/components/ui/Table";
 
-import RevenueChart from "@/components/charts/RevenueChart";
-import FunnelChart from "@/components/charts/FunnelChart";
-import BarChart from "@/components/charts/BarChart";
+import { RevenueChart } from "@/components/charts/RevenueChart";
+import { FunnelChart } from "@/components/charts/FunnelChart";
+import { BarChart } from "@/components/charts/BarChart";
 
 import {
   activityFeed,
