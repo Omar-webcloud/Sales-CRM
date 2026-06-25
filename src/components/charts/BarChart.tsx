@@ -20,9 +20,13 @@ function formatMoney(n: number) {
   });
 }
 
-export function BarChart() {
+export function BarChart({
+  data,
+}: {
+  data: Array<{ label: string; value: number }>;
+}) {
   // Simple quarterly-ish split derived from existing mock revenue.
-  const data = [
+  const chartData = [
     { label: "Q1", value: revenueData.slice(0, 2).reduce((a, b) => a + b.revenue, 0) },
     { label: "Q2", value: revenueData.slice(2, 4).reduce((a, b) => a + b.revenue, 0) },
     { label: "Q3", value: revenueData.slice(4, 5).reduce((a, b) => a + b.revenue, 0) },

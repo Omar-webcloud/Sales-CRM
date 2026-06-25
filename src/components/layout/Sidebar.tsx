@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { BarChart3, Funnel, Home, Users } from "lucide-react";
 
 const navItems = [
@@ -9,6 +12,8 @@ const navItems = [
 ];
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
   return (
     <aside className="hidden w-64 flex-col border-r border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950 md:flex">
       <div className="flex items-center gap-2 px-6 py-5">
@@ -24,16 +29,41 @@ export default function Sidebar() {
       <nav className="flex-1 px-3 pb-4">
         {navItems.map((item) => {
           const Icon = item.icon;
+          const isActive = pathname === item.href;
+
+          // Treat /dashboard/* routes as belonging to Overview when none matches.
+          const isFallbackOverview =
+            item.href === "/dashboard" &&
+            pathname?.startsWith("/dashboard") &&
+            pathname !== "/dashboard";
+
+          const active = isActive || isFallbackOverview;
+
           return (
             <Link
               key={item.href}
               href={item.href}
-              className="group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-900 dark:hover:text-zinc-50"
+              className={
+                "group flex items-center gap-3 rounded-lg px-3 py-2 text-sm font-medium " +
+                (active
+                  ? "bg-zinc-100 text-zinc-900 dark:bg-zinc-900 dark:text-zinc-50"
+                  : "text-zinc-700 hover:bg-zinc-100 hover:text-zinc-900 dark:text-zinc-200 dark:hover:bg-zinc-900 dark:hover:text-zinc-50")
+              }
             >
-              <span className="text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-zinc-50">
+              <span
+                className={
+                  "text-zinc-500 transition-colors group-hover:text-zinc-900 dark:text-zinc-200 dark:group-hover:text-zinc-50" +
+                  (active ? " text-zinc-900 dark:text-zinc-50" : "")
+                }
+              >
                 <Icon className="h-4 w-4" />
               </span>
-              <span className="transition-colors group-hover:text-zinc-900 dark:group-hover:text-zinc-50">
+              <span
+                className={
+                  "transition-colors group-hover:text-zinc-900 dark:group-hover:text-zinc-50" +
+                  (active ? " text-zinc-900 dark:text-zinc-50" : "")
+                }
+              >
                 {item.label}
               </span>
             </Link>
@@ -43,4 +73,5 @@ export default function Sidebar() {
     </aside>
   );
 }
+
 
