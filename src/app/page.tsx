@@ -14,7 +14,7 @@ function formatCurrency(n: number) {
 export default function Home() {
   return (
     <DashboardShell>
-      <div className="w-full px-4 md:px-6">
+      <div className="w-full px-4 md:px-6 py-6">
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <Card className="p-5">
             <div className="text-sm text-zinc-500">Revenue</div>
