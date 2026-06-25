@@ -1,11 +1,11 @@
 
-# 📊 Sales Dashboard CRM — UIUX Wireframe
+#  Sales Dashboard CRM — UIUX Wireframe
 
 This document defines the full UI structure for a **Sales Dashboard CRM (analytics-heavy SaaS)** built with a modern frontend stack (Next.js + TypeScript + Tailwind).
 
 ---
 
-# 🧭 Global Layout
+#  Global Layout
 
 ```
 
@@ -29,7 +29,7 @@ This document defines the full UI structure for a **Sales Dashboard CRM (analyti
 
 ---
 
-# 📊 1. Overview Dashboard
+#  1. Overview Dashboard
 
 ```
 
@@ -59,7 +59,7 @@ This document defines the full UI structure for a **Sales Dashboard CRM (analyti
 
 ---
 
-# 💰 2. Revenue Analytics Page
+#  2. Revenue Analytics Page
 
 ```
 
@@ -85,7 +85,7 @@ This document defines the full UI structure for a **Sales Dashboard CRM (analyti
 
 ---
 
-# 🧑‍💼 3. Team Performance Page
+#  3. Team Performance Page
 
 ```
 
@@ -115,7 +115,7 @@ This document defines the full UI structure for a **Sales Dashboard CRM (analyti
 
 ---
 
-# 📉 4. Sales Funnel Page
+#  4. Sales Funnel Page
 
 ```
 
@@ -144,7 +144,7 @@ This document defines the full UI structure for a **Sales Dashboard CRM (analyti
 
 ---
 
-# 📦 5. Products Page
+#  5. Products Page
 
 ```
 
@@ -161,7 +161,7 @@ This document defines the full UI structure for a **Sales Dashboard CRM (analyti
 
 ---
 
-# ⚙️ 6. Settings Page
+#  6. Settings Page
 
 ```
 
@@ -186,7 +186,7 @@ This document defines the full UI structure for a **Sales Dashboard CRM (analyti
 
 ---
 
-# 🧩 Core UI Components Checklist
+#  Core UI Components Checklist
 
 ## Layout
 - Sidebar
@@ -213,7 +213,7 @@ This document defines the full UI structure for a **Sales Dashboard CRM (analyti
 
 ---
 
-# 🎯 Design Principles
+#  Design Principles
 
 - Use consistent spacing (8px system)
 - KPI cards always at top
