@@ -10,7 +10,7 @@ This document defines the full UI structure for a **Sales Dashboard CRM (analyti
 ```
 
 ┌──────────────────────────────────────────────────────────────┐
-│ Top Navbar                                                   │
+│ Navbar top                                                   │
 │ Logo | Global Search | Date Range | Notifications | Profile  │
 └──────────────────────────────────────────────────────────────┘
 
