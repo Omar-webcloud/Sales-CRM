@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { BarChart3, Funnel, Home, Users } from "lucide-react";
 
 const navItems = [
-  { href: "/dashboard", label: "Overview", icon: Home },
+  { href: "/", label: "Overview", icon: Home },
   { href: "/dashboard/revenue", label: "Revenue", icon: BarChart3 },
   { href: "/dashboard/team", label: "Team", icon: Users },
   { href: "/dashboard/funnel", label: "Funnel", icon: Funnel },
@@ -31,13 +31,7 @@ export default function Sidebar() {
           const Icon = item.icon;
           const isActive = pathname === item.href;
 
-          // Treat /dashboard/* routes as belonging to Overview when none matches.
-          const isFallbackOverview =
-            item.href === "/dashboard" &&
-            pathname?.startsWith("/dashboard") &&
-            pathname !== "/dashboard";
-
-          const active = isActive || isFallbackOverview;
+          const active = isActive;
 
           return (
             <Link
