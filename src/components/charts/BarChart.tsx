@@ -20,11 +20,7 @@ function formatMoney(n: number) {
   });
 }
 
-export function BarChart({
-  data,
-}: {
-  data: Array<{ label: string; value: number }>;
-}) {
+export function BarChart() {
   // Simple quarterly-ish split derived from existing mock revenue.
   const chartData = [
     { label: "Q1", value: revenueData.slice(0, 2).reduce((a, b) => a + b.revenue, 0) },
@@ -36,7 +32,7 @@ export function BarChart({
   return (
     <div className="h-72 w-full">
       <ResponsiveContainer width="100%" height="100%">
-        <ReBarChart data={data} margin={{ top: 12, right: 16, left: 0, bottom: 0 }}>
+        <ReBarChart data={chartData} margin={{ top: 12, right: 16, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" className="stroke-zinc-200 dark:stroke-zinc-800" />
           <XAxis dataKey="label" tick={{ fill: "#71717a", fontSize: 12 }} axisLine={false} tickLine={false} />
           <YAxis tick={{ fill: "#71717a", fontSize: 12 }} axisLine={false} tickLine={false} tickFormatter={formatMoney} />

@@ -89,7 +89,7 @@ export default function RevenuePage() {
             <CardTitle>Quarterly Pipeline</CardTitle>
           </CardHeader>
           <CardContent>
-            <BarChart data={[]} />
+            <BarChart />
           </CardContent>
         </Card>
       </section>
