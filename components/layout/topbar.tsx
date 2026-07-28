@@ -1,8 +1,10 @@
 'use client'
 
+import { useEffect, useState } from 'react'
 import { useIsFetching } from '@tanstack/react-query'
-import { BellIcon, CheckIcon, LogOutIcon, SearchIcon, SettingsIcon, UserIcon } from 'lucide-react'
+import { BellIcon, CheckIcon, LogOutIcon, MoonIcon, SearchIcon, SunIcon, UserIcon } from 'lucide-react'
 import Link from 'next/link'
+import { useTheme } from 'next-themes'
 import { toast } from 'sonner'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
@@ -32,6 +34,14 @@ export function Topbar() {
   const profile = useCrmStore((s) => s.profile)
   const isFetching = useIsFetching()
   const unread = notifications.filter((n) => !n.read).length
+  const { resolvedTheme, setTheme } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
+  const isDark = mounted ? resolvedTheme === 'dark' : false
 
   return (
     <header className="sticky top-0 z-30 flex h-14 shrink-0 items-center gap-2 border-b border-border bg-background/80 px-3 backdrop-blur-md md:px-4">
@@ -56,6 +66,16 @@ export function Topbar() {
             Syncing
           </span>
         ) : null}
+
+        <Button
+          variant="ghost"
+          size="icon"
+          className="relative"
+          aria-label="Toggle theme"
+          onClick={() => setTheme(isDark ? 'light' : 'dark')}
+        >
+          {isDark ? <SunIcon /> : <MoonIcon />}
+        </Button>
 
         <DateRangePicker />
 
