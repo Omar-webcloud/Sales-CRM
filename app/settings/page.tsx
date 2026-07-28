@@ -43,7 +43,7 @@ export default function SettingsPage() {
     <>
       <PageHeader
         title="Settings"
-        description="Manage your profile, workspace preferences and how Northstar notifies you."
+        description="Manage your profile, workspace preferences and how SalesPilot notifies you."
       />
 
       <Tabs defaultValue="profile">

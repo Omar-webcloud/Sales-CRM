@@ -10,7 +10,7 @@ const geistSans = Geist({ subsets: ['latin'], variable: '--font-geist-sans' })
 const geistMono = Geist_Mono({ subsets: ['latin'], variable: '--font-geist-mono' })
 
 export const metadata: Metadata = {
-  title: 'Northstar — Sales Dashboard CRM',
+  title: 'SalesPilot — Sales Dashboard CRM',
   description:
     'Revenue analytics, pipeline funnel, team leaderboards and product performance for modern sales organizations.',
 }
@@ -29,7 +29,7 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang="en" className={`bg-background ${geistSans.variable} ${geistMono.variable}`}>
+    <html lang="en" suppressHydrationWarning className={`bg-background ${geistSans.variable} ${geistMono.variable}`}>
       <body className="font-sans antialiased">
         <Providers>
           <AppShell>{children}</AppShell>

@@ -20,7 +20,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
   )
 
   return (
-    <ThemeProvider attribute="class" defaultTheme="system" enableSystem enableColorScheme>
+    <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>{children}</TooltipProvider>
       </QueryClientProvider>

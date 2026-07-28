@@ -58,7 +58,7 @@ export const useCrmStore = create<CrmState>((set) => ({
   ],
   profile: {
     name: 'Alex Moreau',
-    email: 'alex.moreau@northstar.io',
+    email: 'alex.moreau@salespilot.io',
     role: 'Head of Revenue',
     timezone: 'Europe/Paris',
   },

@@ -44,12 +44,12 @@ export function AppSidebar() {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton size="lg" render={<Link href="/" />} tooltip="Northstar CRM">
+            <SidebarMenuButton size="lg" render={<Link href="/" />} tooltip="SalesPilot CRM">
               <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-primary font-mono text-sm font-semibold text-primary-foreground">
-                N
+                S
               </span>
               <span className="flex flex-col gap-0.5 leading-none">
-                <span className="text-sm font-semibold">Northstar</span>
+                <span className="text-sm font-semibold">SalesPilot</span>
                 <span className="text-xs text-muted-foreground">Revenue OS</span>
               </span>
             </SidebarMenuButton>
