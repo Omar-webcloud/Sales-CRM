@@ -103,7 +103,7 @@ export function AppSidebar() {
       <SidebarFooter>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton tooltip="Support" render={<Link href="/settings" />}>
+            <SidebarMenuButton tooltip="Support" render={<Link href="/support" />}>
               <LifeBuoyIcon />
               <span>Support</span>
             </SidebarMenuButton>
