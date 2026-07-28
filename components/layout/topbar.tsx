@@ -121,10 +121,6 @@ export function Topbar() {
                 <UserIcon />
                 Profile
               </DropdownMenuItem>
-              <DropdownMenuItem render={<Link href="/settings" />}>
-                <SettingsIcon />
-                Settings
-              </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
