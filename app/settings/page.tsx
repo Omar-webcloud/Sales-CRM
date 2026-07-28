@@ -19,10 +19,10 @@ import { Input } from '@/components/ui/input'
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select'
 import { Switch } from '@/components/ui/switch'
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { CURRENCY_LABELS, CURRENCY_OPTIONS, fetchExchangeRate, type CurrencyCode } from '@/lib/currency'
 import { useCrmStore } from '@/lib/store'
 
 const TIMEZONES = ['Europe/Paris', 'Europe/London', 'America/New_York', 'America/Los_Angeles', 'Asia/Singapore']
-const CURRENCIES = ['USD', 'EUR', 'GBP'] as const
 
 export default function SettingsPage() {
   const profile = useCrmStore((s) => s.profile)
@@ -38,6 +38,18 @@ export default function SettingsPage() {
     draft.email !== profile.email ||
     draft.role !== profile.role ||
     draft.timezone !== profile.timezone
+
+  const handleCurrencyChange = async (value: string) => {
+    const nextCurrency = value as CurrencyCode
+
+    try {
+      const rate = nextCurrency === 'USD' ? 1 : await fetchExchangeRate('USD', nextCurrency)
+      updatePreferences({ currency: nextCurrency, currencyRate: rate })
+      toast.success(`Dashboard values will now display in ${CURRENCY_LABELS[nextCurrency]}`)
+    } catch {
+      toast.error('Unable to update currency conversion right now.')
+    }
+  }
 
   return (
     <>
@@ -182,24 +194,28 @@ export default function SettingsPage() {
                 <Field>
                   <FieldLabel htmlFor="currency">Reporting currency</FieldLabel>
                   <Select
-                    items={CURRENCIES.map((currency) => ({ label: currency, value: currency }))}
+                    items={CURRENCY_OPTIONS.map((currency) => ({ label: CURRENCY_LABELS[currency], value: currency }))}
                     value={preferences.currency}
-                    onValueChange={(value) => updatePreferences({ currency: value as (typeof CURRENCIES)[number] })}
+                    onValueChange={(value) => {
+                      if (value) {
+                        void handleCurrencyChange(value)
+                      }
+                    }}
                   >
                     <SelectTrigger id="currency" className="w-40">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectGroup>
-                        {CURRENCIES.map((currency) => (
+                        {CURRENCY_OPTIONS.map((currency) => (
                           <SelectItem key={currency} value={currency}>
-                            {currency}
+                            {CURRENCY_LABELS[currency]}
                           </SelectItem>
                         ))}
                       </SelectGroup>
                     </SelectContent>
                   </Select>
-                  <FieldDescription>Amounts are converted at the previous close rate.</FieldDescription>
+                  <FieldDescription>Amounts are converted from USD using the latest available reference rate.</FieldDescription>
                 </Field>
               </FieldGroup>
             </CardContent>

@@ -1,6 +1,7 @@
 'use client'
 
 import { create } from 'zustand'
+import type { CurrencyCode } from './currency'
 import type { DateRange, Filters } from './types'
 
 type Notification = {
@@ -21,7 +22,8 @@ type Preferences = {
   compactTables: boolean
   weeklyDigest: boolean
   liveUpdates: boolean
-  currency: 'USD' | 'EUR' | 'GBP'
+  currency: CurrencyCode
+  currencyRate: number | null
 }
 
 type CrmState = {
@@ -67,6 +69,7 @@ export const useCrmStore = create<CrmState>((set) => ({
     weeklyDigest: true,
     liveUpdates: true,
     currency: 'USD',
+    currencyRate: 1,
   },
   setFilter: (key, value) => set((state) => ({ filters: { ...state.filters, [key]: value } })),
   setRange: (range) => set((state) => ({ filters: { ...state.filters, range } })),
