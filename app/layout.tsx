@@ -2,7 +2,7 @@ import { Analytics } from '@vercel/analytics/next'
 import type { Metadata, Viewport } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
-import { AppShell } from '@/components/layout/app-shell'
+import { ConditionalAppShell } from '@/components/layout/conditional-app-shell'
 import { Providers } from '@/components/providers'
 import { Toaster } from '@/components/ui/sonner'
 
@@ -32,7 +32,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning className={`bg-background ${geistSans.variable} ${geistMono.variable}`}>
       <body suppressHydrationWarning className="font-sans antialiased">
         <Providers>
-          <AppShell>{children}</AppShell>
+          <ConditionalAppShell>{children}</ConditionalAppShell>
           <Toaster position="bottom-right" />
         </Providers>
         {process.env.NODE_ENV === 'production' && <Analytics />}

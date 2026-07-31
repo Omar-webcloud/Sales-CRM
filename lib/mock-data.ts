@@ -70,17 +70,7 @@ function initials(name: string) {
 
 /* ---------- filter helpers ---------- */
 
-export function normalizeFilters(params: URLSearchParams): Filters {
-  const range = (params.get('range') ?? '30d') as DateRange
-  return {
-    range: (['7d', '30d', '90d', '12m'] as DateRange[]).includes(range) ? range : '30d',
-    team: params.get('team') ?? 'All teams',
-    department: params.get('department') ?? 'All departments',
-    region: params.get('region') ?? 'All regions',
-    product: params.get('product') ?? 'All products',
-    source: params.get('source') ?? 'All sources',
-  }
-}
+export { normalizeFilters } from './filters'
 
 function seedOf(filters: Filters, scope: string) {
   return [scope, filters.range, filters.team, filters.department, filters.region, filters.product, filters.source].join('|')

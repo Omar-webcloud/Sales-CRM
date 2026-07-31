@@ -1,0 +1,115 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../lib/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+enum Role {
+  ADMIN
+  MANAGER
+  REP
+}
+
+enum DealStage {
+  LEADS
+  CONTACTED
+  DEMO
+  PROPOSAL
+  WON
+  LOST
+}
+
+enum ActivityKind {
+  WON
+  STAGE
+  LEAD
+  LOST
+  NOTE
+}
+
+model User {
+  id            String           @id @default(cuid())
+  email         String           @unique
+  passwordHash  String
+  name          String
+  role          Role             @default(REP)
+  timezone      String           @default("UTC")
+  team          String
+  department    String
+  createdAt     DateTime         @default(now())
+  updatedAt     DateTime         @updatedAt
+  deals         Deal[]
+  activities    Activity[]
+  preferences   UserPreferences?
+  notifications Notification[]
+}
+
+model UserPreferences {
+  id            String  @id @default(cuid())
+  userId        String  @unique
+  user          User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  compactTables Boolean @default(false)
+  weeklyDigest  Boolean @default(true)
+  liveUpdates   Boolean @default(true)
+  currency      String  @default("USD")
+}
+
+model Product {
+  id       String @id @default(cuid())
+  name     String @unique
+  category String
+  deals    Deal[]
+}
+
+model Deal {
+  id         String     @id @default(cuid())
+  title      String
+  amount     Float
+  stage      DealStage  @default(LEADS)
+  source     String
+  region     String
+  repId      String
+  rep        User       @relation(fields: [repId], references: [id])
+  productId  String
+  product    Product    @relation(fields: [productId], references: [id])
+  createdAt  DateTime   @default(now())
+  updatedAt  DateTime   @updatedAt
+  closedAt   DateTime?
+  activities Activity[]
+
+  @@index([stage])
+  @@index([createdAt])
+  @@index([repId])
+  @@index([productId])
+}
+
+model Activity {
+  id        String       @id @default(cuid())
+  kind      ActivityKind
+  action    String
+  target    String
+  amount    Float?
+  userId    String
+  user      User         @relation(fields: [userId], references: [id])
+  dealId    String?
+  deal      Deal?        @relation(fields: [dealId], references: [id], onDelete: SetNull)
+  createdAt DateTime     @default(now())
+
+  @@index([createdAt])
+  @@index([userId])
+}
+
+model Notification {
+  id        String   @id @default(cuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title     String
+  body      String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  @@index([userId])
+}

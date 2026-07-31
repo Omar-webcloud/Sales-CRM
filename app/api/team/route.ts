@@ -1,8 +1,9 @@
-import { getTeam, normalizeFilters } from '@/lib/mock-data'
+import { normalizeFilters } from '@/lib/filters'
+import { getTeamFromDb } from '@/lib/services/team'
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const filters = normalizeFilters(searchParams)
-  await new Promise((resolve) => setTimeout(resolve, 350))
-  return Response.json(getTeam(filters))
+  const data = await getTeamFromDb(filters)
+  return Response.json(data)
 }

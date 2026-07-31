@@ -5,7 +5,6 @@ import { useIsFetching } from '@tanstack/react-query'
 import { BellIcon, CheckIcon, LogOutIcon, MoonIcon, SearchIcon, SunIcon, UserIcon } from 'lucide-react'
 import Link from 'next/link'
 import { useTheme } from 'next-themes'
-import { toast } from 'sonner'
 import { Avatar, AvatarFallback } from '@/components/ui/avatar'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
@@ -23,6 +22,7 @@ import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover
 import { Separator } from '@/components/ui/separator'
 import { SidebarTrigger } from '@/components/ui/sidebar'
 import { Spinner } from '@/components/ui/spinner'
+import { useAuth } from '@/lib/auth-client'
 import { useCrmStore } from '@/lib/store'
 import { DateRangePicker } from './date-range-picker'
 
@@ -32,10 +32,16 @@ export function Topbar() {
   const notifications = useCrmStore((s) => s.notifications)
   const markAllRead = useCrmStore((s) => s.markAllRead)
   const profile = useCrmStore((s) => s.profile)
+  const { logout } = useAuth()
   const isFetching = useIsFetching()
   const unread = notifications.filter((n) => !n.read).length
   const { resolvedTheme, setTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
+  const initials = profile.name
+    .split(' ')
+    .slice(0, 2)
+    .map((p) => p[0])
+    .join('')
 
   useEffect(() => {
     setMounted(true)
@@ -122,7 +128,7 @@ export function Topbar() {
             render={
               <Button variant="ghost" className="h-8 gap-2 px-1.5" aria-label="Account menu">
                 <Avatar className="size-6">
-                  <AvatarFallback className="text-[10px]">AM</AvatarFallback>
+                  <AvatarFallback className="text-[10px]">{initials}</AvatarFallback>
                 </Avatar>
                 <span className="hidden text-sm sm:inline">{profile.name}</span>
               </Button>
@@ -144,7 +150,7 @@ export function Topbar() {
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
-              <DropdownMenuItem onClick={() => toast.success('Signed out of the demo workspace')}>
+              <DropdownMenuItem onClick={() => logout()}>
                 <LogOutIcon />
                 Sign out
               </DropdownMenuItem>

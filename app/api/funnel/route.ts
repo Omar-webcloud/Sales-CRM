@@ -1,8 +1,9 @@
-import { getFunnel, normalizeFilters } from '@/lib/mock-data'
+import { normalizeFilters } from '@/lib/filters'
+import { getFunnelFromDb } from '@/lib/services/funnel'
 
 export async function GET(request: Request) {
   const { searchParams } = new URL(request.url)
   const filters = normalizeFilters(searchParams)
-  await new Promise((resolve) => setTimeout(resolve, 350))
-  return Response.json(getFunnel(filters))
+  const data = await getFunnelFromDb(filters)
+  return Response.json(data)
 }
