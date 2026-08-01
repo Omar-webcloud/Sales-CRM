@@ -4,6 +4,8 @@ import { hashPassword, signToken, AUTH_COOKIE, authCookieOptions } from '@/lib/a
 import { db } from '@/lib/db'
 import { registerSchema } from '@/lib/validators/auth'
 
+export const runtime = 'nodejs'
+
 export async function POST(request: NextRequest) {
   try {
     const body = registerSchema.parse(await request.json())

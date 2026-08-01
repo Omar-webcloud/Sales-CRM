@@ -1,6 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { AUTH_COOKIE, AuthError, authenticateUser, authCookieOptions, requireSession, signToken } from '@/lib/auth'
+import { AUTH_COOKIE, AuthError, authCookieOptions, requireSession, signToken } from '@/lib/auth'
+import { authenticateUser } from '@/lib/auth-server'
 import { loginSchema } from '@/lib/validators/auth'
+
+export const runtime = 'nodejs'
 
 export async function POST(request: NextRequest) {
   try {
@@ -19,6 +22,7 @@ export async function POST(request: NextRequest) {
     if (error instanceof Error && error.name === 'ZodError') {
       return NextResponse.json({ error: 'Invalid request' }, { status: 400 })
     }
+    console.error('[login] Unexpected error:', error)
     return NextResponse.json({ error: 'Login failed' }, { status: 500 })
   }
 }

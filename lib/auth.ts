@@ -1,5 +1,4 @@
-import bcrypt from 'bcryptjs'
-import { SignJWT, jwtVerify } from 'jose'
+import { jwtVerify, SignJWT } from 'jose'
 import { cookies } from 'next/headers'
 import type { NextRequest } from 'next/server'
 
@@ -21,14 +20,6 @@ function getJwtSecret() {
 function getExpiresInSeconds() {
   const raw = process.env.JWT_EXPIRES_IN
   return raw ? Number.parseInt(raw, 10) : 60 * 60 * 24 * 7
-}
-
-export async function hashPassword(password: string) {
-  return bcrypt.hash(password, 12)
-}
-
-export async function verifyPassword(password: string, hash: string) {
-  return bcrypt.compare(password, hash)
 }
 
 export async function signToken(user: SessionUser) {
@@ -93,16 +84,4 @@ export class AuthError extends Error {
   }
 }
 
-export async function authenticateUser(email: string, password: string) {
-  const { db } = await import('./db')
-  const user = await db.user.findUnique({ where: { email: email.toLowerCase() } })
-  if (!user) return null
-  const valid = await verifyPassword(password, user.passwordHash)
-  if (!valid) return null
-  return {
-    id: user.id,
-    email: user.email,
-    name: user.name,
-    role: user.role,
-  } satisfies SessionUser
-}
+export { authenticateUser, hashPassword } from './auth-server'

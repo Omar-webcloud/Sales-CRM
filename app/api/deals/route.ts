@@ -5,6 +5,8 @@ import { db } from '@/lib/db'
 import { buildDealWhere, normalizeFilters } from '@/lib/filters'
 import { createDealSchema } from '@/lib/validators/deal'
 
+export const runtime = 'nodejs'
+
 export async function GET(request: NextRequest) {
   try {
     await requireSession(request)

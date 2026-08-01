@@ -6,6 +6,8 @@ import { updateDealSchema } from '@/lib/validators/deal'
 
 type RouteContext = { params: Promise<{ id: string }> }
 
+export const runtime = 'nodejs'
+
 export async function GET(request: NextRequest, context: RouteContext) {
   try {
     await requireSession(request)

@@ -1,8 +1,8 @@
+import 'dotenv/config'
 import { subDays, subMonths } from 'date-fns'
 import bcrypt from 'bcryptjs'
-import { ActivityKind, DealStage, PrismaClient, Role } from '../lib/generated/prisma/client'
-
-const db = new PrismaClient()
+import { ActivityKind, DealStage, Role } from '../lib/generated/prisma/client'
+import { db } from '../lib/db'
 
 const REPS = [
   { name: 'John Okafor', team: 'Enterprise', department: 'Outbound' },
