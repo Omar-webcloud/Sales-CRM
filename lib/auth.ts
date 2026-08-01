@@ -84,4 +84,3 @@ export class AuthError extends Error {
   }
 }
 
-export { authenticateUser, hashPassword } from './auth-server'
