@@ -2,7 +2,6 @@ import bcrypt from 'bcryptjs'
 import { SignJWT, jwtVerify } from 'jose'
 import { cookies } from 'next/headers'
 import type { NextRequest } from 'next/server'
-import { db } from './db'
 
 export const AUTH_COOKIE = 'auth-token'
 
@@ -95,6 +94,7 @@ export class AuthError extends Error {
 }
 
 export async function authenticateUser(email: string, password: string) {
+  const { db } = await import('./db')
   const user = await db.user.findUnique({ where: { email: email.toLowerCase() } })
   if (!user) return null
   const valid = await verifyPassword(password, user.passwordHash)

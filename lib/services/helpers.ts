@@ -1,5 +1,5 @@
 import { format, subDays, subMonths, subWeeks } from 'date-fns'
-import type { DealStage } from '@/lib/generated/prisma'
+import type { DealStage } from '@/lib/generated/prisma/client'
 import type { Filters, Kpi } from '@/lib/types'
 
 export const STAGE_LABELS: Record<DealStage, string> = {

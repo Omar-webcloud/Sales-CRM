@@ -1,6 +1,6 @@
 import { subDays, subMonths } from 'date-fns'
 import bcrypt from 'bcryptjs'
-import { ActivityKind, DealStage, PrismaClient, Role } from '../lib/generated/prisma'
+import { ActivityKind, DealStage, PrismaClient, Role } from '../lib/generated/prisma/client'
 
 const db = new PrismaClient()
 

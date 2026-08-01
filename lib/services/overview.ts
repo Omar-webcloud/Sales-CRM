@@ -1,4 +1,4 @@
-import { DealStage } from '@/lib/generated/prisma'
+import { DealStage } from '@/lib/generated/prisma/client'
 import { db } from '@/lib/db'
 import { buildActivityWhere, buildDealWhere, getDateRangeStart } from '@/lib/filters'
 import type { Filters, OverviewData } from '@/lib/types'

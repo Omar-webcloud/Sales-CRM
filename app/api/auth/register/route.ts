@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { Role } from '@/lib/generated/prisma'
+import { Role } from '@/lib/generated/prisma/client'
 import { hashPassword, signToken, AUTH_COOKIE, authCookieOptions } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { registerSchema } from '@/lib/validators/auth'

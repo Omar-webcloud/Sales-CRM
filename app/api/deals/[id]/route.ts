@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { ActivityKind, DealStage } from '@/lib/generated/prisma'
+import { ActivityKind, DealStage } from '@/lib/generated/prisma/client'
 import { AuthError, requireSession } from '@/lib/auth'
 import { db } from '@/lib/db'
 import { updateDealSchema } from '@/lib/validators/deal'

@@ -1,4 +1,4 @@
-import { DealStage } from '@/lib/generated/prisma'
+import { DealStage } from '@/lib/generated/prisma/client'
 import { db } from '@/lib/db'
 import { buildDealWhere } from '@/lib/filters'
 import type { Filters, FunnelData } from '@/lib/types'

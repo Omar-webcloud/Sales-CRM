@@ -1,5 +1,5 @@
 import { subDays, subMonths } from 'date-fns'
-import type { Prisma } from '@/lib/generated/prisma'
+import type { Prisma } from '@/lib/generated/prisma/client'
 import type { DateRange, Filters } from './types'
 
 export function normalizeFilters(params: URLSearchParams): Filters {
