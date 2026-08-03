@@ -44,12 +44,12 @@ export default function SupportPage() {
               <div>
                 <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">Website</p>
                 <a
-                  href="https://omarwebcloud.netlify.app/"
+                  href="https://omar-webcloud.vercel.app/"
                   target="_blank"
                   rel="noreferrer"
                   className="text-foreground underline underline-offset-2 decoration-muted/50 hover:text-primary"
                 >
-                  omarwebcloud.netlify.app
+                  omar-webcloud.vercel.app/
                 </a>
               </div>
               <div>
